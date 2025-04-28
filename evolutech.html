@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulsa Tu Negocio con IA - EVOLUTECH</title> <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@400;700&family=Rajdhani:wght@600&display=swap" rel="stylesheet"> <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eff6ff; /* Very light blue background (blue-50) */
+        }
+        /* Main title font */
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        /* Section title font */
+        .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        /* Style for highlighting 'Simple' */
+        .highlight-simple {
+            font-weight: bold;
+            color: #2563eb; /* Blue-600 for emphasis */
+        }
+        /* Style for the benefits section */
+        .benefits-section {
+            background-color: #dbeafe; /* Light blue background (blue-100) */
+            border-left: 4px solid #60a5fa; /* Lighter blue border (blue-400) */
+        }
+        /* Style for icons */
+        .section-icon {
+            font-size: 1.8rem;
+            color: #1d4ed8; /* Darker blue for icons (blue-700) */
+            /* Removed margin-bottom to align better in button */
+            width: 40px; /* Ensure consistent icon area width */
+            text-align: center;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        /* Styles for collapsible sections */
+        .section-content {
+            display: none; /* Hidden by default */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* Smooth transition */
+            max-height: 0; /* Start with zero height */
+            background-color: #f9fafb; /* Slightly off-white background for content area */
+        }
+        .section-content.open {
+            display: block; /* Show when open */
+            /* max-height is set by JS */
+        }
+        /* Button styles for sections */
+        .section-toggle-button {
+            background-color: #d1fae5; /* Light green background (green-100) */
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease; /* Added border transition */
+            width: 100%;
+            text-align: left;
+            border-radius: 0.5rem; /* Rounded corners */
+            padding: 1rem; /* Padding */
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space for icon and arrow */
+            border: 1px solid transparent; /* Add transparent border for layout consistency */
+        }
+        .section-toggle-button:hover {
+            background-color: #a7f3d0; /* Lighter green on hover (green-200) */
+        }
+        /* Style for the active button */
+        .section-toggle-button.active {
+            background-color: #6ee7b7; /* Brighter green when active (green-300) */
+            border-color: #047857; /* Dark green border when active */
+        }
+        /* Toggle indicator (+/-) */
+        .toggle-indicator {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #047857; /* Dark green (green-700) */
+            transition: transform 0.3s ease;
+            flex-shrink: 0; /* Prevent indicator from shrinking */
+        }
+        .section-toggle-button.active .toggle-indicator {
+             transform: rotate(45deg); /* Change '+' to 'x' */
+        }
+        /* Enhanced title background */
+        .title-section-bg {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); /* Blue gradient */
+            position: relative; /* Needed for absolute positioning of brand */
+            overflow: hidden; /* Contain pseudo-elements if added later */
+        }
+        /* Style for EVOLUTECH brand name */
+        .brand-name {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400; /* Lighter weight */
+            color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            margin-top: 0.5rem; /* Space below main title */
+            font-size: 1.1rem; /* Slightly smaller size */
+            letter-spacing: 0.05em; /* Add some letter spacing */
+        }
+
+        /* Styles for new CTA buttons */
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            margin: 0.5rem; /* Spacing between buttons */
+        }
+        .cta-button-primary {
+            background-color: #ffffff; /* White */
+            color: #3b82f6; /* Blue-600 */
+            border: 1px solid #ffffff;
+        }
+        .cta-button-primary:hover {
+            background-color: #f9fafb; /* Slightly off-white */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .cta-button-secondary {
+            background-color: transparent;
+            color: #ffffff; /* White */
+            border: 1px solid #ffffff;
+        }
+        .cta-button-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle white background */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="text-center mb-10 p-6 md:p-10 rounded-xl shadow-lg max-w-3xl mx-auto title-section-bg border-t-4 border-blue-300">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 font-orbitron">Impulsa Tu Negocio con Inteligencia Artificial (IA)</h1>
+        <div class="brand-name">by EVOLUTECH</div>
+        <p class="text-lg text-blue-100 mt-4">Esta empresa es fundada por Sebastian Pineda (CEO) junto a nosotros podras usar herramientas de IA <span class="highlight-simple text-white font-semibold">simples</span> para resolver problemas clave, ahorrar tiempo y ganar más. ¡Sin complicaciones técnicas!</p>
+        <div class="mt-6">
+            <a href="#" class="cta-button cta-button-primary"> <i class="fas fa-calendar-check mr-2"></i>Agenda tu Cita
+            </a>
+            <a href="#" class="cta-button cta-button-secondary"> <i class="fas fa-envelope mr-2"></i>Contáctanos
+            </a>
+        </div>
+    </div>
+
+    <div class="space-y-6 max-w-4xl mx-auto">
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="section-toggle-button" data-target="section-1-content">
+                <div class="flex items-center space-x-4 flex-grow min-w-0"> <i class="fas fa-headset section-icon"></i>
+                     <h2 class="text-xl font-semibold text-gray-700 font-rajdhani truncate">Atención al Cliente</h2> </div>
+                <span class="toggle-indicator">+</span>
+            </button>
+            <div id="section-1-content" class="section-content p-6 space-y-4">
+                <div class="p-4 border border-gray-200 rounded-lg bg-red-50">
+                    <h3 class="font-semibold text-red-600 mb-1">El Problema:</h3>
+                    <p class="text-gray-700">Perdemos mucho tiempo respondiendo las mismas preguntas (horarios, precios básicos, etc.) y dejamos ir clientes fuera de horario.</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg bg-blue-50">
+                    <h3 class="font-semibold text-blue-700 mb-1">Solución IA <span class="highlight-simple">Simple:</span></h3>
+                    <p class="text-gray-700">Un Asistente Virtual Automático en nuestra web o redes sociales.</p>
+                </div>
+                <div class="p-4 benefits-section rounded-lg">
+                    <h3 class="font-semibold text-green-700 mb-2">¡Los Grandes Beneficios!:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>✨ ¡Clientes Atendidos al Instante, 24/7!</li>
+                        <li>✨ ¡Mucho Menos Trabajo Repetitivo para Nosotros! (¡Hasta 50% menos tiempo en FAQs!)</li>
+                        <li>✨ ¡Capturamos Interesados Incluso Cuando Dormimos!</li>
+                        <li>✨ ¡Imagen Más Profesional y Moderna!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="section-toggle-button" data-target="section-2-content">
+                 <div class="flex items-center space-x-4 flex-grow min-w-0">
+                     <i class="fas fa-rocket section-icon"></i>
+                     <h2 class="text-xl font-semibold text-gray-700 font-rajdhani truncate">Marketing y Contenidos</h2>
+                 </div>
+                 <span class="toggle-indicator">+</span>
+            </button>
+            <div id="section-2-content" class="section-content p-6 space-y-4">
+                <div class="p-4 border border-gray-200 rounded-lg bg-red-50">
+                    <h3 class="font-semibold text-red-600 mb-1">El Problema:</h3>
+                    <p class="text-gray-700">Nos cuesta crear textos atractivos para redes, web o correos. ¡No tenemos tiempo o ideas!</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg bg-blue-50">
+                    <h3 class="font-semibold text-blue-700 mb-1">Solución IA <span class="highlight-simple">Simple:</span></h3>
+                    <p class="text-gray-700">Un Ayudante Inteligente para Escribir textos de marketing.</p>
+                </div>
+                <div class="p-4 benefits-section rounded-lg">
+                    <h3 class="font-semibold text-green-700 mb-2">¡Los Grandes Beneficios!:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>🚀 ¡Creamos Contenido Genial en Mucho Menos Tiempo! (¡Ahorro de 5-10 horas/semana!)</li>
+                        <li>🚀 ¡Publicamos Más Seguido y Mejor!</li>
+                        <li>🚀 ¡Textos Más Atractivos que Enganchan a los Clientes!</li>
+                        <li>🚀 ¡Ideas Frescas Siempre Disponibles!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="section-toggle-button" data-target="section-3-content">
+                 <div class="flex items-center space-x-4 flex-grow min-w-0">
+                     <i class="fas fa-coins section-icon"></i>
+                     <h2 class="text-xl font-semibold text-gray-700 font-rajdhani truncate">Finanzas Claras</h2>
+                 </div>
+                 <span class="toggle-indicator">+</span>
+            </button>
+            <div id="section-3-content" class="section-content p-6 space-y-4">
+                <div class="p-4 border border-gray-200 rounded-lg bg-red-50">
+                    <h3 class="font-semibold text-red-600 mb-1">El Problema:</h3>
+                    <p class="text-gray-700">Registrar gastos e ingresos es lento, fácil equivocarse y no sabemos bien cómo vamos financieramente al día.</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg bg-blue-50">
+                    <h3 class="font-semibold text-blue-700 mb-1">Solución IA <span class="highlight-simple">Simple:</span></h3>
+                    <p class="text-gray-700">Un Programa de Contabilidad Inteligente que ordena las cuentas casi solo.</p>
+                </div>
+                <div class="p-4 benefits-section rounded-lg">
+                    <h3 class="font-semibold text-green-700 mb-2">¡Los Grandes Beneficios!:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>💰 ¡Adiós a Horas de Papeleo! (¡80% menos entrada manual!)</li>
+                        <li>💰 ¡Cuentas Más Exactas, Menos Errores Costosos!</li>
+                        <li>💰 ¡Sabemos Cómo Va el Negocio al Instante! (Reportes automáticos)</li>
+                        <li>💰 ¡Más Fácil Pedir Préstamos o Planificar!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="section-toggle-button" data-target="section-4-content">
+                 <div class="flex items-center space-x-4 flex-grow min-w-0">
+                     <i class="fas fa-box-open section-icon"></i>
+                     <h2 class="text-xl font-semibold text-gray-700 font-rajdhani truncate">Inventario Inteligente</h2>
+                 </div>
+                 <span class="toggle-indicator">+</span>
+            </button>
+            <div id="section-4-content" class="section-content p-6 space-y-4">
+                <div class="p-4 border border-gray-200 rounded-lg bg-red-50">
+                    <h3 class="font-semibold text-red-600 mb-1">El Problema:</h3>
+                    <p class="text-gray-700">Nos quedamos sin los productos que más se venden o acumulamos los que no salen. ¡Eso es dinero perdido!</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg bg-blue-50">
+                    <h3 class="font-semibold text-blue-700 mb-1">Solución IA <span class="highlight-simple">Simple:</span></h3>
+                    <p class="text-gray-700">Un Sistema que Predice Qué se Venderá Más y nos avisa cuándo pedir.</p>
+                </div>
+                <div class="p-4 benefits-section rounded-lg">
+                    <h3 class="font-semibold text-green-700 mb-2">¡Los Grandes Beneficios!:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>📦 ¡Menos Dinero Estancado en Productos Lentos! (¡Hasta 25% menos sobrestock!)</li>
+                        <li>📦 ¡No Más Ventas Perdidas por Falta de Stock!</li>
+                        <li>📦 ¡Usamos Mejor Nuestro Dinero!</li>
+                        <li>📦 ¡Pedidos Más Eficientes!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="section-toggle-button" data-target="section-5-content">
+                 <div class="flex items-center space-x-4 flex-grow min-w-0">
+                     <i class="fas fa-calendar-alt section-icon"></i>
+                     <h2 class="text-xl font-semibold text-gray-700 font-rajdhani truncate">Agendar Reuniones Fácil</h2>
+                 </div>
+                 <span class="toggle-indicator">+</span>
+            </button>
+            <div id="section-5-content" class="section-content p-6 space-y-4">
+                <div class="p-4 border border-gray-200 rounded-lg bg-red-50">
+                    <h3 class="font-semibold text-red-600 mb-1">El Problema:</h3>
+                    <p class="text-gray-700">¡El vaivén de correos y mensajes para cuadrar una reunión es agotador y quita tiempo!</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg bg-blue-50">
+                    <h3 class="font-semibold text-blue-700 mb-1">Solución IA <span class="highlight-simple">Simple:</span></h3>
+                    <p class="text-gray-700">Un Calendario Inteligente donde la gente reserva sola el hueco que le conviene.</p>
+                </div>
+                <div class="p-4 benefits-section rounded-lg">
+                    <h3 class="font-semibold text-green-700 mb-2">¡Los Grandes Beneficios!:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>⏰ ¡Cero Tiempo Perdido Coordinando Agendas! (¡Ahorro de 1-3 horas/semana!)</li>
+                        <li>⏰ ¡Menos Errores al Agendar!</li>
+                        <li>⏰ ¡Clientes Felices por lo Fácil que es Reservar!</li>
+                        <li>⏰ ¡Nos Vemos Súper Organizados!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript for accordion toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButtons = document.querySelectorAll('.section-toggle-button');
+
+            // Function to close all sections except the current one
+            function closeOtherSections(currentButton) {
+                toggleButtons.forEach(button => {
+                    if (button !== currentButton) {
+                        const targetId = button.getAttribute('data-target');
+                        const targetContent = document.getElementById(targetId);
+                        // Check if targetContent exists before trying to modify it
+                        if (targetContent && targetContent.classList.contains('open')) { // Only act if it's actually open
+                            targetContent.classList.remove('open'); // Close content
+                            targetContent.style.maxHeight = null; // Reset max-height
+                            button.classList.remove('active'); // Deactivate button
+                            // Reset indicator for other buttons
+                            const indicator = button.querySelector('.toggle-indicator');
+                            if (indicator) {
+                                indicator.textContent = '+';
+                                indicator.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    }
+                });
+            }
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    const indicator = button.querySelector('.toggle-indicator');
+
+                    // Check if targetContent exists
+                    if (!targetContent) {
+                        console.error(`Target content with ID ${targetId} not found.`);
+                        return;
+                    }
+
+                    const isOpening = !targetContent.classList.contains('open'); // Check if we are opening this section
+
+                    // Close other sections BEFORE toggling the current one
+                    if (isOpening) {
+                        closeOtherSections(button);
+                    }
+
+                    // Toggle the current section's content and active states
+                    targetContent.classList.toggle('open');
+                    button.classList.toggle('active');
+
+                    // Animate max-height and change indicator
+                    if (targetContent.classList.contains('open')) { // Check if it's now open
+                        // Set max-height for opening animation - calculate scrollHeight *after* setting display to block (implicitly done by adding 'open' class if CSS handles it, otherwise needs explicit display change before measuring)
+                         // For robustness, ensure display is block before measuring scrollHeight if the 'open' class doesn't handle it immediately
+                        requestAnimationFrame(() => { // Use requestAnimationFrame to ensure styles are applied
+                            targetContent.style.maxHeight = targetContent.scrollHeight + "px";
+                        });
+
+                        if (indicator) {
+                            indicator.textContent = '+'; // Keep it '+' but rotate
+                            indicator.style.transform = 'rotate(45deg)'; // Rotate to 'x'
+                        }
+                    } else {
+                        targetContent.style.maxHeight = null; // Collapse
+                        if (indicator) {
+                            indicator.textContent = '+';
+                            indicator.style.transform = 'rotate(0deg)'; // Rotate back
+                        }
+                    }
+                });
+            });
+
+             // Recalculate scrollHeight on window resize for open sections
+             window.addEventListener('resize', () => {
+                document.querySelectorAll('.section-content.open').forEach(openContent => {
+                    // Temporarily remove transition to get immediate scrollHeight and avoid animation jump
+                    const currentTransition = openContent.style.transition;
+                    openContent.style.transition = 'none';
+
+                    // Recalculate and apply the scrollHeight
+                    openContent.style.maxHeight = openContent.scrollHeight + "px";
+
+                    // Restore transition after a short delay using requestAnimationFrame
+                    requestAnimationFrame(() => {
+                         openContent.style.transition = currentTransition;
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
